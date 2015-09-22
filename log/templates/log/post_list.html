@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <title>Learning CSS</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        #circle {
+            height:200px;
+            width:200px;
+            background-color:#FF0000;
+            border-radius: 100px;
+            display: none;
+        }
+    </style>    
+</head>
+
+<body>
+    
+    <h1> Test your reaction speed!</h1>
+    <p> Your speed is: <span id = "time">  </span>s</p>
+    <div id="circle"> </div>
+    <script type="text/javascript">
+        var delaytime  = 5000*Math.random();
+        var circle = document.getElementById("circle");
+        var createtime =0;
+        var clicktime = 0;
+        var diff =  0;
+        circle.onclick =function(){
+            clicktime = Date.now();
+            diff = (clicktime-createtime)/1000
+            circle.style.display= "none";
+            document.getElementById("time").innerHTML = diff;
+            create();
+        }
+        function create(){
+            setTimeout(function(){
+                createtime = Date.now();
+                var top = Math.random()*300;
+                var left = Math.random()*500;
+                circle.style.marginTop = top+"px";
+                circle.style.marginLeft = left+"px";
+                if (Math.random()>0.50){
+                    circle.style.borderRadius="0px";
+                } else{
+                    circle.style.borderRadius = "100px";
+                }
+                circle.style.display = "block";
+            }, delaytime)
+        }
+
+        create();
+    </script>
+</body>
+</html>
+
